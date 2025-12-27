@@ -1,0 +1,56 @@
+{
+	"name": "go-php2go-snippets",
+	"displayName": "Golang php2go Snippets",
+	"description": "Use PHP function names as snippets in Golang.",
+	"version": "1.0.0",
+	"publisher": "RomanBolovintsev",
+	"repository": "https://github.com/gozoro/vscode-golang-php2go-snippets",
+	"engines": {
+		"vscode": ">=1.40.0"
+	},
+	"license": "MIT",
+	"icon": "icon.png",
+	"keywords": [
+		"golang",
+		"php",
+		"php2go",
+		"php to go",
+		"snippets",
+		"snippet"
+	],
+	"categories": [
+		"Snippets"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "go",
+				"extensions": [
+					".go"
+				]
+			}
+		],
+		"snippets": [
+			{
+				"language": "go",
+				"path": "snippets-common.json"
+			},
+			{
+				"language": "go",
+				"path": "snippets-array.json"
+			},
+			{
+				"language": "go",
+				"path": "snippets-string.json"
+			},
+			{
+				"language": "go",
+				"path": "snippets-time.json"
+			},
+			{
+				"language": "go",
+				"path": "snippets-numbers.json"
+			}
+		]
+	}
+}
