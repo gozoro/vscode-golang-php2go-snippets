@@ -1,0 +1,142 @@
+{
+    "Create empty slice": {
+        "prefix": "php2go: array",
+        "body": [
+            "${1:arr} := []${2:string}{}"
+        ],
+        "description": "Create empty slice:\n\n arr := []string{\"aaa\", \"bbb\", \"ccc\"}\n\n"
+    },
+
+	"Counts all elements in an array": {
+        "prefix": "php2go: count",
+        "body": [
+            "len(${1:arr})"
+        ],
+        "description": "Counts all elements in an array."
+    },
+
+
+	"Find highest value": {
+        "prefix": "php2go: max",
+        "body": [
+            "slices.Max(${1:arr})"
+        ],
+        "description": "Find highest value"
+    },
+
+	"Find lowest value": {
+        "prefix": "php2go: min",
+        "body": [
+            "slices.Min(${1:arr})"
+        ],
+        "description": "Find lowest value"
+    },
+
+
+	"Sort an array in ascending order": {
+        "prefix": "php2go: sort",
+        "body": [
+            "slices.Sort(${1:arr})"
+        ],
+        "description": "Sort an array in ascending order"
+    },
+
+	"Sort an array by values using a user-defined comparison function": {
+        "prefix": "php2go: usort",
+        "body": [
+        	"sort.Slice($(1:arr), func(a, b int) bool {",
+			"    return $(1:arr)[a] < $(1:arr)[b]",
+			"})"
+        ],
+        "description": "Sort an array by values using a user-defined comparison function"
+    },
+
+
+
+	"Merge one or more arrays": {
+        "prefix": "php2go: array_merge",
+        "body": [
+            "slices.Concat(${1:arr})"
+        ],
+        "description": "Merge one or more arrays"
+    },
+
+	"Split an array into chunks": {
+        "prefix": "php2go: array_chunk",
+        "body": [
+            "slices.Chunk(${1:arr}, ${2:length})"
+        ],
+        "description": "Split an array into chunks"
+    },
+
+	"Checks if a value exists in an array": {
+        "prefix": "php2go: in_array",
+        "body": [
+            "slices.Contains(${1:arr}, ${2:value})"
+        ],
+        "description": "Checks if a value exists in an array"
+    },
+
+	"Push one or more elements onto the end of array": {
+        "prefix": "php2go: array_push",
+        "body": [
+            "append(${1:arr}, ${2:elements}...)"
+        ],
+        "description": "Push one or more elements onto the end of array"
+    },
+
+	"Pop the element off the end of array": {
+        "prefix": "php2go: array_pop",
+        "body": [
+			"// add a condition when  len(${1:arr}) == 0",
+			"lastIndex := len(${1:arr}) - 1",
+			"lastElement := ${1:arr}[lastIndex]",
+			"${1:arr} = ${1:arr}[:lastIndex]"
+        ],
+        "description": "Pop the element off the end of array"
+    },
+
+	"Shift an element off the beginning of array": {
+        "prefix": "php2go: array_shift",
+        "body": [
+			"// add a condition when  len(${1:arr}) == 0",
+			"firstElement := ${1:arr}[0]",
+			"arr = ${1:arr}[1:]"
+        ],
+        "description": "Shift an element off the beginning of array"
+    },
+
+	"Prepend one or more elements to the beginning of an array": {
+        "prefix": "php2go: array_unshift",
+        "body": [
+			"${1:arr} = append(${2:elements}, ${1:arr}...)"
+        ],
+        "description": "Prepend one or more elements to the beginning of an array"
+    },
+
+	"Return an array with elements in reverse order": {
+        "prefix": "php2go: array_reverse",
+        "body": [
+			"for i, j := 0, len(${1:arr})-1; i < j; i, j = i+1, j-1 {",
+			"    ${1:arr}[i], ${1:arr}[j] = ${1:arr}[j], ${1:arr}[i]",
+			"}"
+        ],
+        "description": "Return an array with elements in reverse order"
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

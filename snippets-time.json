@@ -1,0 +1,114 @@
+{
+	"Date format Y-m-d": {
+        "prefix": "php2go: Y-m-d",
+        "body": [
+			"2006-01-02"
+        ],
+        "description": "Date format Y-m-d."
+    },
+
+	"Date format Y-m-d H:i:s": {
+        "prefix": "php2go: Y-m-d H:i:s",
+        "body": [
+			"2006-01-02 15:04:05"
+        ],
+        "description": "Date format Y-m-d H:i:s."
+    },
+
+	"Date format d.m.Y": {
+        "prefix": "php2go: d.m.Y",
+        "body": [
+			"02.01.2006"
+        ],
+        "description": "Date format d.m.Y."
+    },
+
+	"Date format d.m.Y H:i:s": {
+        "prefix": "php2go: d.m.Y H:i:s",
+        "body": [
+			"02.01.2006 15:04:05"
+        ],
+        "description": "Date format d.m.Y H:i:s."
+    },
+	"Yesterday date": {
+        "prefix": "php2go: yesterday",
+        "body": [
+			"time.Now().AddDate(0, 0, -1)"
+        ],
+        "description": "Yesterday date."
+    },
+
+	"Tomorrow date": {
+        "prefix": "php2go: tomorrow",
+        "body": [
+			"time.Now().AddDate(0, 0, 1)"
+        ],
+        "description": "Tomorrow date."
+    },
+
+	"Returns current Unix timestamp": {
+        "prefix": "php2go: time",
+        "body": [
+			"time.Now().Unix()"
+        ],
+        "description": "Returns current Unix timestamp."
+    },
+	"Format a Unix timestamp": {
+        "prefix": "php2go: date",
+        "body": [
+			"time.Unix(${1:timestamp}, 0).Format(${2:format})"
+        ],
+        "description": "Format a Unix timestamp."
+    },
+
+	"Number of days in the given month": {
+        "prefix": "php2go: date('t')",
+        "body": [
+			"func(t time.Time) int {",
+			"    return time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, time.UTC).AddDate(0, 1, 0).Add(-time.Nanosecond).Day()",
+			"}(${1:time.Now()})"
+        ],
+        "description": "Number of days in the given month."
+    },
+
+	"Numeric representation of the day of the week": {
+        "prefix": "php2go: date('w')",
+        "body": [
+			"int(${1:time.Now()}.Weekday())"
+        ],
+        "description": "Numeric representation of the day of the week."
+    },
+
+
+	"Delay execution": {
+        "prefix": "php2go: sleep",
+        "body": [
+			"time.Sleep(time.Duration(${1:seconds}) * time.Second)"
+        ],
+        "description":"Delay execution."
+    },
+
+	"Delay execution in microseconds": {
+        "prefix": "php2go: usleep",
+        "body": [
+			"time.Sleep(time.Duration(${1:microseconds}) * time.Microsecond)"
+        ],
+        "description":"Delay execution in microseconds."
+    },
+
+	"Parse some textual datetime description into a Unix timestamp": {
+        "prefix": "php2go: strtotime",
+        "body": [
+			"func(format, strtime string) (int64, error) {",
+			"    t, err := time.Parse(format, strtime)",
+			"    if err != nil {",
+			"        return 0, err",
+			"    }",
+			"    return t.Unix(), nil",
+			"}(${1:format}, ${2:strtime})"
+        ],
+        "description":"Parse some textual datetime description into a Unix timestamp."
+    }
+
+
+}

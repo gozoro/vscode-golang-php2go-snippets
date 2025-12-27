@@ -1,0 +1,58 @@
+{
+
+	"Absolute value": {
+        "prefix": "php2go: abs",
+        "body": [
+			"math.Abs(${1:value})"
+        ],
+        "description": "Absolute value"
+    },
+
+	"Round fractions up": {
+        "prefix": "php2go: ceil",
+        "body": [
+			"math.Ceil(${1:value})"
+        ],
+        "description": "Round fractions up"
+    },
+
+	"Round fractions down": {
+        "prefix": "php2go: floor",
+        "body": [
+			"math.Floor(${1:value})"
+        ],
+        "description": "Round fractions down"
+    },
+
+	"Rounds a float": {
+        "prefix": "php2go: round",
+        "body": [
+			"func(val float64, precision uint) float64 {",
+			"    ratio := math.Pow(10, float64(precision))",
+			"    return math.Round(val*ratio) / ratio",
+			"}(${1:value}, ${2:precision})"
+        ],
+        "description": "Rounds a float with precision"
+    },
+
+
+	"Get value of pi": {
+        "prefix": "php2go: pi",
+        "body": [
+			"math.Pi"
+        ],
+        "description": "Get value of pi"
+    },
+
+	"Checks whether a float is NAN": {
+        "prefix": "php2go: is_nan",
+        "body": [
+			"math.IsNaN(${1:value})"
+        ],
+        "description": "Checks whether a float is NAN"
+    }
+
+
+
+
+}

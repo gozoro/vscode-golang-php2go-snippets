@@ -1,0 +1,255 @@
+{
+	"Get string length of runes": {
+        "prefix": "php2go: strlen",
+        "body": [
+
+			"len([]rune(${1:str}))"
+        ],
+        "description": ["Get string length of runes.", "Or you can use\n", "utf8.RuneCountInString(str)\n\n"]
+    },
+
+	"Split a string by a string": {
+        "prefix": "php2go: explode",
+        "body": [
+			"strings.Split(${1:str}, ${2:delimiter})"
+        ],
+        "description": "Split a string by a string.\n\n"
+    },
+
+	"Join array elements with a string": {
+        "prefix": "php2go: implode",
+        "body": [
+			"strings.Join(${1:elements}, ${2:separator})"
+        ],
+        "description": "Join array elements with a string."
+    },
+
+	"Generate a single-byte string from a number": {
+        "prefix": "php2go: chr",
+        "body": [
+        ],
+        "description": "Generate a single-byte string from a number."
+    },
+
+	"Convert the first byte of a string to a value between 0 and 255": {
+        "prefix": "php2go: ord",
+        "body": [
+			"utf8.DecodeRune([]byte(${1:char}))"
+        ],
+        "description": "Convert the first byte of a string to a value between 0 and 255."
+    },
+
+	"Convert all applicable characters to HTML entities": {
+        "prefix": "php2go: htmlentities",
+        "body": [
+			"html.EscapeString(${1:str})"
+        ],
+        "description": "Convert all applicable characters to HTML entities."
+    },
+
+	"Convert HTML entities to their corresponding characters": {
+        "prefix": "php2go: html_entity_decode",
+        "body": [
+			"html.UnescapeString(${1:str})"
+        ],
+        "description": "Convert HTML entities to their corresponding characters."
+    },
+
+
+
+	"Strip whitespace from the beginning and end of a string": {
+        "prefix": "php2go: trim",
+        "body": [
+			"strings.TrimSpace(${1:str})"
+        ],
+        "description": "Strip whitespace from the beginning and end of a string."
+    },
+
+	"Repeat a string": {
+        "prefix": "php2go: str_repeat",
+        "body": [
+			"strings.Repeat(${1:str}, ${2:count})"
+        ],
+        "description": "Repeat a string."
+    },
+
+	"Replace all occurrences of the search string with the replacement string": {
+        "prefix": "php2go: str_replace",
+        "body": [
+			"strings.Replace(${1:subject}, ${2:search}, ${3:replace}, ${4:count}))"
+        ],
+        "description": "Replace all occurrences of the search string with the replacement string."
+    },
+
+	"Make a string uppercase": {
+        "prefix": "php2go: strtoupper",
+        "body": [
+			"strings.ToUpper(${1:str})"
+        ],
+        "description": "Make a string uppercase."
+    },
+
+	"Make a string lowercase": {
+        "prefix": "php2go: strtolower",
+        "body": [
+			"strings.ToLower(${1:str})"
+        ],
+        "description": "Make a string lowercase."
+    },
+
+	"Return information about words used in a string": {
+        "prefix": "php2go: str_word_count",
+        "body": [
+			"strings.Fields(${1:str})"
+        ],
+        "description": "Return information about words used in a string."
+    },
+
+	"Return part of a string": {
+        "prefix": "php2go: substr",
+        "body": [
+			"string([]rune(${1:str})[${2:start}:${3:end}])"
+        ],
+        "description": "Return part of a string."
+    },
+
+	"URL-encodes string": {
+        "prefix": "php2go: urlencode",
+        "body": [
+			"url.QueryEscape(${1:str})"
+        ],
+        "description": "URL-encodes string."
+    },
+
+	"Decodes URL-encoded string": {
+        "prefix": "php2go: urldecode",
+        "body": [
+			"url.QueryUnescape(${1:str})"
+        ],
+        "description": "Decodes URL-encoded string."
+    },
+
+	"URL-encode according to RFC 3986": {
+        "prefix": "php2go: rawurlencode",
+        "body": [
+			"strings.Replace(url.QueryEscape(${1:str}), \"+\", \"%20\", -1)"
+        ],
+        "description": "URL-encode according to RFC 3986."
+    },
+
+	"Decode URL-encoded strings from RFC 3986": {
+        "prefix": "php2go: rawurldecode",
+        "body": [
+			"url.QueryUnescape(strings.Replace(${1:str}, \"%20\", \"+\", -1))"
+        ],
+        "description": "Decode URL-encoded strings from RFC 3986."
+    },
+
+	"Encodes data with MIME base64": {
+        "prefix": "php2go: base64_encode",
+        "body": [
+			"base64.StdEncoding.EncodeToString([]byte(${1:str}))"
+        ],
+        "description": "Encodes data with MIME base64."
+    },
+
+	"Decodes data encoded with MIME base64": {
+        "prefix": "php2go: base64_decode",
+        "body": [
+			"func(str string) (string, error) {",
+			"    switch len(str) % 4 {",
+			"    case 2:",
+			"        str += \"==\"",
+			"    case 3:",
+			"        str += \"=\"",
+			"    }",
+			"",
+			"    data, err := base64.StdEncoding.DecodeString(str)",
+			"    if err != nil {",
+			"        return \"\", err",
+			"    }",
+			"    return string(data), nil",
+			"}(${1:str})"
+        ],
+        "description": "Decodes data encoded with MIME base64."
+    },
+
+	"Calculate the md5 hash of a string": {
+        "prefix": "php2go: md5",
+        "body": [
+			"func(str string) string {",
+			"    hash := md5.New()",
+			"    hash.Write([]byte(str))",
+			"    return hex.EncodeToString(hash.Sum(nil))",
+			"}(${1:str})"
+        ],
+        "description": "Calculate the md5 hash of a string."
+    },
+
+	"Calculates the md5 hash of a given file": {
+        "prefix": "php2go: md5_file",
+        "body": [
+			"func(filename string) (string, error) {",
+			"    f, err := os.Open(filename)",
+			"    if err != nil {",
+			"        return \"\", err",
+			"    }",
+			"    defer f.Close()",
+			"    h := md5.New()",
+			"    if _, err := io.Copy(h, f); err != nil {",
+			"        return \"\", err",
+			"    }",
+			"    return hex.EncodeToString(h.Sum(nil)), nil",
+			"}(${1:filename})"
+        ],
+        "description": "Calculates the md5 hash of a given file."
+    },
+
+	"Calculate the sha1 hash of a string": {
+        "prefix": "php2go: sha1",
+        "body": [
+			"func(str string) string {",
+			"    hash := sha1.New()",
+			"    hash.Write([]byte(str))",
+			"    return hex.EncodeToString(hash.Sum(nil))",
+			"}(${1:str})"
+        ],
+        "description": "Calculate the sha1 hash of a string."
+    },
+
+	"Calculates the sha1 hash of a given file": {
+        "prefix": "php2go: sha1_file",
+        "body": [
+			"func(filename string) (string, error) {",
+			"    f, err := os.Open(filename)",
+			"    if err != nil {",
+			"        return \"\", err",
+			"    }",
+			"    defer f.Close()",
+			"    h := sha1.New()",
+			"    if _, err := io.Copy(h, f); err != nil {",
+			"        return \"\", err",
+			"    }",
+			"    return hex.EncodeToString(h.Sum(nil)), nil",
+			"}(${1:filename})"
+        ],
+        "description": "Calculates the sha1 hash of a given file."
+    },
+
+	"Returns the JSON representation of a value": {
+        "prefix": "php2go: json_encode",
+        "body": [
+			"json.Marshal(${1:value})"
+        ],
+        "description": "Returns the JSON representation of a value."
+    },
+
+
+	"Decodes a JSON string": {
+        "prefix": "php2go: json_decode",
+        "body": [
+			"json.Unmarshal(byte(${1:strJson}), ${2:obj})"
+        ],
+        "description": "Decodes a JSON string."
+    }
+}

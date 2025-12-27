@@ -1,0 +1,60 @@
+{
+	"for": {
+        "prefix": "php2go: for",
+        "body": [
+			"for ${1:i} := 0; ${1:i} < ${2:10}; ${1:i}++ {",
+			"",
+			"}"
+        ],
+        "description": "The for loop."
+    },
+
+    "for range": {
+        "prefix": "php2go: foreach",
+        "body": [
+			"for key, val := range ${1:arr} {",
+			"",
+			"}"
+        ],
+        "description": "The foreach construct provides an easy way to iterate over arrays."
+    },
+	"the while loop": {
+        "prefix": "php2go: while",
+        "body": [
+			"for ${1:your_condition} {",
+			"",
+			"}"
+        ],
+        "description": "The loop the truth expression is checked at the beginning of each iteration."
+    },
+
+	"the do-while loop": {
+        "prefix": "php2go: do-while",
+        "body": [
+			"for {",
+			"    //YOUR CODE HERE",
+			"",
+			"    if !(${1:your_condition}) {",
+			"        break",
+			"    }",
+			"}"
+        ],
+        "description": "The loop the truth expression is checked at the end of each iteration."
+    },
+
+	"switch": {
+		"prefix": "php2go: switch",
+		"body": [
+			"switch ${1:val} {",
+			"case \"value1\":",
+			"    // YOUR CODE HERE",
+			"    // you can continue to execute other cases with the `fallthrough` keyword",
+			"case \"value2\", \"value3\":",
+			"    // YOUR CODE HERE",
+			"default:",
+			"    // YOUR DEFAULT CODE HERE",
+			"}"
+		],
+		"description": "The switch statement is similar to a series of IF statements on the same expression."
+	}
+}
